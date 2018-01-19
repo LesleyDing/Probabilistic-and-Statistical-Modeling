@@ -1,5 +1,4 @@
-# ECS-132
-# Homework I
+# ECS-132 Homework I
 
 Due Monday, January 22
 

@@ -3,6 +3,8 @@
 Due Monday, January 22
 
 ## Notes on Submission Packages
+Submission command:
+<pre>handin cs132 hw1 emailAdresses.tar</pre>
 
 *   In any Homework assignment, include all the files for problems due on the same date in the same **.tar** file, NO SUBDIRECTORIES. When the TA's grading script unpacks the file, all the files should be in the directory from which she issued the unpack command. The name of the **.tar** file must be as specified in the course Syllabus.
 

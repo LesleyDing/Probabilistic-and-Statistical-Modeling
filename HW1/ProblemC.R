@@ -23,4 +23,5 @@ PAMsim <- function(nNodes) {
 }
 
 # simulation example for N4
+print("Example run for N4:")
 PAMsim(4)

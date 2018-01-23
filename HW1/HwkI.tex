@@ -1,0 +1,204 @@
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[colorlinks=true, allcolors=red]{hyperref}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%\usepackage{mathtools}
+%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+%\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\newcommand{\heads}{\textsc{h}}
+\newcommand{\tails}{\textsc{t}}
+
+\newcommand{\logten}{\log}%\mathrm{log}\hspace{0.05in}}
+\newcommand{\logtwo}{\lg}%\mathrm{lg}\hspace{0.05in}}
+\newcommand{\loge}{\ln}%\mathrm{ln}\hspace{0.05in}}
+
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+\usepackage{algpseudocode, algorithm}
+\usepackage{listings}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{ECS132 \hfill Dept. of Computer Science, University of California, Davis} % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework \#1 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+\author{Alice Ma, Nicholas Jahja, Kangbo Lu, Hanzhi Ding} % Put your name here
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem A}
+Say cars crossing a certain multilane bridge take either 3, 4 or 5 minutes for the trip. 50\% take 3 minutes, with a 25\% figure each for the 4- and 5-minute trips. We will consider the traversal by three cars, named A, B and C, that simultaneously start crossing the bridge. They are in different lanes, and operate independently. Place your code in a file ProblemA.R.\\
+
+Let T${_x}$ denotes the trip time for car x, x = A or B or C\\
+
+1. Find the probability that the first arrival to the destination is at the 4-minute mark:
+    \begin{solution}
+     We know that since the earliest car is to arrive at four minutes, there can be no car that arrives at the 3-minute mark and it is not possible for all cars to arrive at the 5-minute mark.The possibility that the first car arrives at the 4-minute mark can be written as a combination of all possibilities including at least one car that travels in the 4-minute lane or it can be written by removing the possibilities that cannot happen from the total possibility.\\
+    P(first arrival to destination at 4-minute)\\
+    = $P$(T${_A}$=4 and T${_B}$=4 and T${_C}$=4) or $P$(T${_A}$=4 and T${_B}$=4 and T${_C}$=5)\\
+    or $P$(T${_A}$=4 and T${_B}$=5 and T${_C}$=4) or $P$(T${_A}$=4 and T${_B}$=5 and T${_C}$=5)\\
+    or $P$(T${_A}$=5 and T${_B}$=4 and T${_C}$=4) or $P$(T${_A}$=5 and T${_B}$=5 and T${_C}$=4)\\
+    or $P$(T${_A}$=5 and T${_B}$=4 and T${_C}$=5)\\
+    Since the cars travel independently from each other, we know all arrivals are independent and can be calculated using the mailing tube for and. Similarly, the different events are disjoint from each other since they cannot both happen at the same time so we are able to use the disjoint or mailing tube to combine the possibilities. Also the probability for a 4-minute arrival and 5-minute arrival are both 25\%.\\
+    $P$(first arrival to destination at 4-minute)\\
+    = $P$(4)$P$(4)$P$(4) + $P$(4)$P$(4)$P$(5) + $P$(4)$P$(5)$P$(4) + $P$(4)$P$(5)$P$(5) + $P$(5)$P$(4)$P$(4) + $P$(5)$P$(5)$P$(4) + $P$(5)$P$(4)$P$(5) \\
+    = 7 (\( \displaystyle \frac{1}{4} \) \times \( \displaystyle \frac{1}{4} \) \times \( \displaystyle \frac{1}{4} \))
+    = \( \displaystyle \frac{7}{64} \)\\
+    = 0.109375\\
+    \end{solution}
+
+2. Find the probability that the total trip time for the three cars is 10 minutes:
+    \begin{solution}
+    Let's consider how this scenario is possible. If the total trip time for the three cars is 10 minutes then the only possible combination is that one car that travels arriving in the 4-minute mark and two cars that travel arriving at the 3-minute mark (3+3+4=10). We can write this out as an equation including all possible outcomes.\\
+    P(total trip time is 10-minutes)\\
+    = $P$(T${_A}$=3 and T${_B}$=3 and T${_C}$=4)
+    or $P$(T${_A}$=3 and T${_B}$=4 and T${_C}$=3)\\
+    or $P$(T${_A}$=4 and T${_B}$=3 and T${_C}$=3)\\
+    Again we can use the mailing tubes. A,B,C are all traveling independently so the and mailing tube can be used. The probability of each occurrence is disjoint from each other so the disjoint or mailing tube may be used.\\
+    P(total trip time is 10-minutes)\\
+    = P(3)P(3)P(4) + P(3)P(4)P(3) + P(4)P(3)P(3)\\
+    = 3 (\( \displaystyle \frac{1}{2} \) \times \( \displaystyle \frac{1}{2} \) \times \( \displaystyle \frac{1}{4} \))\\
+    = \( \displaystyle \frac{3}{16} \) = 0.1875
+    
+    \end{solution}
+
+3. An observer reports that the three cars arrived at the same time. Find the probability that the cars each took 3 minutes to make the trip:
+    \begin{solution}
+    How can it happen? A, B, and C cars started at the same time and arrived at the same time with the same 3-min trip time. No car chose the 4-min or 5-min lane. Therefore, the event can happen only when all 3 cars chose the 3-min lane.\\
+    $P$(All 3 cars chose the 3-min lane)\\
+    = $P$(T${_A}$=3 and T${_B}$=3 and T${_C}$=3)\hspace{34pt}(We have a mailing tube for and)\\
+    = $P$(T${_A}$=3) * $P$(T${_B}$=3) * $P$(T${_C}$=3)\hspace{25pt}(Cars operate independently)\\
+    = 50\% * 50\% * 50\%\hspace{103pt}(Using the probability of choosing 3-min lane)\\
+    = 0.125\\
+    By doing simulation with R with large repetitions, our console output converges to the analytical answer, 0.125.\\
+    Therefore, the probability that the three cars arrived at the same time and each took 3 minutes is 0.125 or 12.5\%.
+    The other computations done in the R simulation also result in an extremely close result to the theoretical value differing in less than one ten thousandths of a decimal.
+    \end{solution}
+
+
+\section{Problem B}
+    Consider the simple ALOHA network model in our book, run for two epochs with $X{_0}$ = 2. Say we know that there was a total of two transmission attempts. Find the probability that at least one of those attempts occurred during epoch 2. (Note: In the term attempt, we aren't distinguishing between successful and failed ones.) Give your analytical answer for general p and q, but evaluate it for p = 0.6 and q = 0.2. Place your code in a file ProblemB.R
+    \begin{solution} 
+        I will denote T${_x}$ as the number of transmission attempts at epoch x. We can break this problem into two easier to understand probabilities: 
+        \begin{enumerate}
+            \item Probability that 0 transmission attempts are sent during epoch 1 and 2 transmission attempts are sent during epoch 2.
+            $$P(T_{1}=0 \; and \; T_{2}=2) \; = \; P(T_{1}=0)P(T_{2}=2|T_{1}=0) \quad \text{(mailing tube for and)} $$ 
+            T${_1}$=0 happens when both nodes do not attempt to send during epoch 1, and since both nodes are still active at the end of epoch 1, T${_2}$=2 can only occur when both of these active nodes attempt to send during epoch 2. This results in:
+            \begin{equation}
+                P(T_{1}=0)P(T_{2}=2|T_{1}=0) \; = \; (1-p)^2p^2
+            \end{equation}
+            \item Probability that 1 transmission attempt is sent during epoch 1 and 1 transmission attempt is sent during epoch 2.
+            $$P(T_{1}=1 \; and \; T_{2}=1) \; = \; P(T_{1}=1)P(T_{2}=1|T_{1}=1) \quad \text{(mailing tube for and)} $$
+            T${_1}$=1 happens when one node sends a message, and the other one does not. If we designate these two nodes as node A and node B, we have to account for the probability that node A is the one that sends the message and the probability that node B is the one that sends the message. As a result:
+            \begin{equation}
+                P(T_{1}=1)=p(1-p) + p(1-p) = 2p(1-p)
+            \end{equation}
+            To solve for P(T${_2}$=1|T${_1}$=1), we already know that at the end of epoch 1, one node is active and the other is inactive because it is given that there was exactly 1 transmission attempt at epoch 1. Using this information, we can split this probability its three possible cases:
+            \begin{enumerate}
+                \item The inactive node does not generates a message and the active node sends a message.
+                $$(1-q)(p)$$
+                \item The inactive node generates a message, and the active node sends a message.
+                $$q(p)(1-p)$$
+                \item The inactive node generates a message, and that same node sends the message.
+                $$q(p)(1-p)$$
+            \end{enumerate}
+            Adding these three possible cases together, we get the result:
+            \begin{equation}
+                P(T_{2}=1|T_{1}=1) = (1-q)(p)+2qp(1-p)
+            \end{equation}
+            We can now solve for \(P(T_{1}=1)P(T_{2}=1|T_{1}=1)\) using our results from (2.2) and (2.3):
+            \begin{equation}
+                P(T_{1}=1)P(T_{2}=1|T_{1}=1) = (2p(1-p))((1-q)(p)+2qp(1-p))
+            \end{equation}
+        \end{enumerate} 
+        Now that both sub-problems are solved from and (2.1) and (2.4), combining these results will give us our final answer:
+        \begin{equation}
+            P(T_{1}=0 \; and \; T_{2}=2) + P(T_{1}=1 \; and \; T_{2}=1) =
+        \end{equation}
+        \begin{equation}
+            P(T_{1}=0)P(T_{2}=2|T_{1}=0) + P(T_{1}=1)P(T_{2}=1|T_{1}=1) =
+        \end{equation}
+        \begin{equation}
+            (1-p)^2p^2 + (2p(1-p))((1-q)(p)+2qp(1-p))
+        \end{equation}
+        Using the given values p = 0.6 and q = 0.2, we get the the probability value of: 0.33408
+    \end{solution}
+
+
+
+\section{Problem C}
+Consider the Preferential Attachment Model, Sec. 2.13.1 of our book. In this problem, you will write code to simulate the model. The call form will be PAMsim(nNodes) where nNodes is the number of nodes to be simulated, including the two original ones. The return value is the vector of degrees of all the nodes, at the time just after the addition of the last one.
+
+By calling this function many times, one can find (approximate) probabilities involving the model. To test your code, use it to verify (2.74).
+
+Note: In testing your code, the TA will run it to simulate a more complex probability, say the probability that after time 8, there are two nodes having degree 1.
+
+In the model, the probability of one new person is over "the degrees of the existing edges"
+    \begin{solution}
+    According to the Preferential Arrangement Model, the starting graph at time 0 is a adjacency matrix with i * j elements:\\
+    \[\begin{bmatrix}
+    0&1\\
+    1&0\\
+    \end{bmatrix}\]\\
+    Row i (i = 1, 2, ...) represent the friendship of node i. For each row i, each column j (j = 1, 2, ...) represent node j is a friend of node i.\\
+    The probability of a new node choosing random existing a node i as a friend equals to:\\
+    number of 1 in ith row / number of 1 in the matrix\\
+    To represent this probability in R, we used sum() function to calculate the row sum of a matrix divided by the sum of the matrix.\\
+    Here is our algorithm for simulation:\\\\
+    Input: nNode represents number of nodes for simulation including orginal two nodes\\
+    Output: a vector of degrees of all the nodes\\
+    ---------------------------------------------------------------------\\
+    1. Create the original matrix with two nodes\\
+    2. Calculate the probabilities of a new node choosing each existing node as a friend\\
+    3. Using the probability to generate an sample index represent random choice of friend\\
+    4. Create a vector of new column with size $=$ number of row and value $= 0$\\
+    5. Let new column vector's element at sample index $= 1$\\
+    6. Create a vector of new row by binding existing new column vector with $0$\\
+    7. Bind the new column to the the existing matrix by column\\
+    8. Bind the new row to the updated matrix by row\\
+    9. Continue to step 2 for nNodes - 2 iterations\\
+    10. Return a vector of degrees of all the nodes\\
+    ---------------------------------------------------------------------\\
+    \end{solution}
+\end{document}

@@ -21,6 +21,6 @@ prob_A2 <- function(sample_size) mean(sums_generator(sample_size)==10)
 prob_A3 <- function(sample_size) mean(sums_generator(sample_size)==9)
 
 # run simulations
-paste("P(X0 = 4) =", prob_A1(100000))
+paste("P(first arrival to destination at 4-minute) =", prob_A1(100000))
 paste("P(TA + TB + TC = 10) =", prob_A2(100000))
 paste("P(TA = 3, TB = 3, TC = 3) =", prob_A3(100000))

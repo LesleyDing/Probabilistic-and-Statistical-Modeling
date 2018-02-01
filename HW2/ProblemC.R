@@ -1,8 +1,9 @@
+# function to find E[(X - μ)3/ σ3]
 bus_ridership <- function(nreps, nstops) {
-  count <- 0
+  EB <- 0
+  VarB <- 0
   for (i in 1:nreps) {
     passengers <- 0
-    B <- 0
     for (j in 1:nstops) {
       if (passengers > 0) {
         for (k in 1:passengers) {
@@ -16,3 +17,6 @@ bus_ridership <- function(nreps, nstops) {
     }
   }
 }
+
+
+bus_ridership(500000, 100)

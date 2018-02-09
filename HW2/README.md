@@ -2,6 +2,13 @@
 
 Due Friday, February 2
 
+
+## Notes on Submission Packages
+Tar all files in workng directory:
+<pre>tar -cvf njahja.kblu.lhding.aaama.tar *</pre>
+Submission command:
+<pre>handin cs132 hw2 njahja.kblu.lhding.aaama.tar</pre>
+
 ## Problem A:
 
 An example was brought up in class, in connection with the discussion of Property D:

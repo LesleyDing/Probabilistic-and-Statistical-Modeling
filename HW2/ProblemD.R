@@ -17,4 +17,7 @@ boardsim <- function(nreps) {
   c(EB, varB)
 }
 
-boardsim(100000)
+result <- boardsim(100000)
+
+paste("EB: ", result[1])
+paste("varB: ", result[2])

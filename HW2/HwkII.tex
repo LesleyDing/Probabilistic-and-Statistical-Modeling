@@ -1,0 +1,269 @@
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[colorlinks=true, allcolors=red]{hyperref}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%\usepackage{mathtools}
+%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+%\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\newcommand{\heads}{\textsc{h}}
+\newcommand{\tails}{\textsc{t}}
+
+\newcommand{\logten}{\log}%\mathrm{log}\hspace{0.05in}}
+\newcommand{\logtwo}{\lg}%\mathrm{lg}\hspace{0.05in}}
+\newcommand{\loge}{\ln}%\mathrm{ln}\hspace{0.05in}}
+
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+\usepackage{algpseudocode, algorithm}
+\usepackage{listings}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{ECS132 \hfill Dept. of Computer Science, University of California, Davis} % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework \#2 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+\author{Alice Ma, Nicholas Jahja, Kangbo Lu, Hanzhi Ding} % Put your name here
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem A}
+    An example was brought up in class, in connection with the discussion of Property D:\\
+    Roll 2 dice, yielding X and Y. Define S as the total, X+Y, and let T be the number of dice (0, 1 or 2) that show an even number of dots. E.g. if X = 4 and Y = 3, then T = 1.\\
+    
+    Show, by example of a specific probability of the form P(S = j | T = i) that S and T are not independent. (You should be able to do this without formal calculation.)
+    \begin{solution}
+    From algebra, we know $even + even = even$, $odd + odd = even$, and $even + odd = odd.$\\
+    Therefore: $T = 1$ gives that S is the sum of an odd number and a even number, so $S = 2n + 1$ for integer $n = 1, 2, 3, 4, 5$. \\
+    $T = 0$ gives that S is the sum of two odd numbers, so $S = 2n$ for integer $n = 1, 3, 5$. \\
+    $T = 2$ gives that S is the sum of two even numbers, so $S = 2n$ for integer $n = 2, 4, 6$.\\
+    From above statement, we can say that at S and T are not independent -- S is depended on T. For example, P(S = 2 | T = 1) = 0.
+    \end{solution}
+    
+    By calculating actual expected values, determine how close (3.25) is to being correct in this case. (Math only, no simulation.) 
+    \begin{solution}
+    (3.25) states that $E(UV) = EU \cdot EV$ for independent U and V.\\
+    In the case that S and T are not independent, we get E(S) = 7 from (3.17), and\\
+    E(T) = $\sum_{k=0}^2 k \cdot P(T = k) = 0 \cdot \frac{9}{36} + 1 \cdot \frac{18}{36} + 2 \cdot \frac{9}{36} = 1$, so $ES \cdot ET = 7$.\\
+    To calculate E(ST), let X = ST.\\
+    Since S has support A = \{2,3,4,5,6,7,8,9,10,11,12\} and T has support B = \{0,1,2\},\\
+    X has support C = \{0,2,3,4,5,6,7,8,9,10,11,12,14,16,18,20,22,24\}.\\
+    E(ST)\\
+    = E(X)\\
+    = $\sum_{k \in C} k \cdot P(X = k)\\
+    = 0 \cdot \frac{9}{36} + 2 \cdot 0 + 3 \cdot \frac{2}{36} + 4 \cdot 0 + 5 \cdot \frac{4}{36} + 6 \cdot 0 + 7 \cdot \frac{6}{36} + 8 \cdot \frac{1}{36} + 9 \cdot \frac{4}{36} + 10 \cdot 0 + 11 \cdot \frac{2}{36} + 12 \cdot \frac{2}{36} + 14 \cdot 0 + 16 \cdot \frac{3}{36} + 18 \cdot 0 + 20 \cdot \frac{2}{36} + 22 \cdot 0 + 24 \cdot \frac{1}{36}\\
+    = 7.5$\\\\
+    So $ E(ST)> ES \cdot ET$.\\
+    By (3.72), $Cov(S,T) = E(ST) - ES \cdot ET = 7.5 - 7 = 0.5$\\
+    Therefore, the formula (3.25) is 0.5 smaller from the correct value.
+    \end{solution}
+
+\section{Problem B}
+    Consider the Preferential Attachment Model, at the time immediately after v4 is added. Find the following, both mathematically and by simulation:\\
+    
+    Expected value of the degree of v1.
+    \begin{solution} 
+        The degree of v1 has support of \{1, 2, 3\} after v4 is added\\
+        Using the mailing tube (3.13) for expected value, the expected value of v1 is:\\\\
+        $E(v1)$\\
+        = $1*P(v1 = 1) + 2*P(v1 = 2) + 3*P(v1 = 3)$\\
+        = $1 * (\frac{1}{2} * \frac{3}{4}) + 
+        2 * [(\frac{1}{2} * \frac{2}{4}) + (\frac{1}{2} * \frac{1}{4})] + 3 * (\frac{1}{2} * \frac{2}{4})$\\
+        = $1 * (\frac{3}{8}) +
+        2 * [(\frac{1}{2}) + (\frac{1}{8})] + 3 * (\frac{1}{4})$\\
+        = $1 * (\frac{3}{8}) +
+        2 * (\frac{3}{8}) + 3 * (\frac{3}{4})$\\
+        = $\frac{3+6+6}{8}$\\
+        = $\frac{15}{8}$\\
+        = 1.875\\
+        From above calculation, now we know $P(v1 = 1) = \frac{3}{8},
+         P(v1 = 2) = \frac{3}{8},
+         P(v1 = 3) = \frac{1}{4}$.\\
+        Therefore, the expected value of the degree of v1 is 1.875.
+    \end{solution}
+    
+    Variance of the degree of v1.
+    \begin{solution} 
+    The mailing tube for variance is $E[(U - EU)^2]$ from equation  (3.38).\\
+    Applying mailing tube (3.36) to evaluate variance, $$Var(v1) = \sum_{n=1}^{3} g(c) * P(v1 = c)$$\\
+    We know $g(c) = (c - 1.875)^2$ and we can use appropriate probability from above sub-problem to solve the question\\
+    $Var(v1)\\
+    = (1 - 1.875)^2 * P(v1 = 1) + 
+    (2 - 1.875)^2 * P(v1 = 2) +
+    (3 - 1.875)^2 * P(v1 = 3)$\\
+    = $(1 - 1.875)^2 * \frac{3}{8} + 
+    (2 - 1.875)^2 * \frac{3}{8} +
+    (3 - 1.875)^2 * \frac{1}{4}$\\
+    $\approx  0.6089$\\
+    Using the mailing tubes from textbook, the calculated variance for the degree of v1 is approximately 0.6089.
+    \end{solution}
+    
+    Covariance between the degrees of v1 and v2.
+    \begin{solution} 
+    According to the mailing tube for covariance (3.72),\\ $Cov(v1,v2) = E(v1v2) - E(v1) * E(v2)$\\
+    From the above the sub-problem, we know the expected value for the degree of v1 is 1.875, and we know the expected value of v2 is 1.875 due to symmetry.\\
+    Now, we have $Cov(v1,v2) = E(v1v2) - 1.875 * 1.875$\\
+    Due to the events are dependent, we need to list all the cases for calculating E(v1v2).\\
+    After v4 added, using an array of size 4 represent the degrees of the nodes in the matrix. We have:\\
+    v1v2 = 2:\\
+    (2, 1, 2, 1): v3 chose v1, v4 chose v3\\
+    (1, 2, 2, 1): v3 chose v2, v4 chose v3\\
+    The probability of v1v2 = $P(2, 1, 2, 1) + P(2, 1, 2, 1) = 0.5*0.25 + 0.5*0.25 = 0.25$\\
+    v1v2 = 3:\\
+    (3, 1, 1, 1): both v3 and v4 chose v1\\
+    (1, 3, 1, 1): both v3 and v4 chose v2\\
+    The probability of v1v2 = $P(3, 1, 1, 1) + P(1, 3, 1, 1) = 0.5*0.5 + 0.5*0.5 = 0.5$\\
+    v1v2 = 4:\\
+    (2, 2, 1, 1): v3 chose v1, v4 chose v2\\
+    (2, 2, 1, 1): v3 chose v2, v4 chose v1\\
+    The probability of v1v2 = $P(2, 2, 1, 1) + P(2, 2, 1, 1) = 0.5*0.25 + 0.5*0.25 = 0.25$\\\\
+    The product of two random variable v1 and v2 is also a random variable and let's call it W.
+    W now has the support of \{2, 3, 4\}\\
+    $E(v1v2)\\
+    = E(W) = 2*P(W=2) + 3*P(W=3) + 4*P(W=4)$\\
+    = $2*0.25 + 3*0.5 + 4*0.25$\\
+    = 0.5 + 1.5 + 1\\
+    = 3\\
+    Now we have $Cov(v1,v2) = 3 - 1.875*1.875 = -0.516$
+    Therefore, the covariance is about -0.516.
+    \end{solution}
+
+
+
+\section{Problem C}
+    The skewness (i.e. amount of asymmetry) of a random variable X is defined to be \\E[(X - ${\mu)^3}$/ ${\sigma^3}$], where ${\mu}$ and ${\sigma}$ are the expected value and standard deviation of X, respectively. Find this for the random variable B in the bus ridership problem, both mathematically and via simulation.
+    \begin{solution}
+        We must first find the expected value of the random variable B in the bus ridership problem. To do this we take all of the possible values of B and multiply them by their respective probabilities. Borrowing the (3.13) equation for expected value from the textbook, we obtain the equation:
+        \begin{equation}
+        \begin{split}
+            \mu = E(B) &= \sum_{c=0}^2 c \cdot P(B=c) \\
+            &= 0 \cdot P(B=0) + 1 \cdot P(B=1) + 2 \cdot P(B=2) \\
+            &= 0 + 1(0.4) + 2(0.1) \\ 
+            &= 0.6
+            \end{split}
+        \end{equation}
+        Next we find the standard deviation of B, which we can obtain by calculating the variance of B and taking the square root of that value.
+        \begin{equation}
+        \begin{split}
+            \sigma^2 = Var(B) &= \sum_{c=0}^2 (c - E(B))^2 \cdot P(B=c) \\
+            &= (0 - 0.6)^2(0.5) + (1 - 0.6)^2(0.4) + (2 - 0.6)^2(0.1) \\
+            &= 0.44
+        \end{split}
+        \end{equation}
+        Taking the square root of variance to find the standard deviation:
+        \begin{equation}
+            \sigma = \sqrt{0.44} = 0.66
+        \end{equation}
+        Now that we've found the mean of B from (3.1) and the standard deviation of B from (3.3), we can solve for skewness of B:
+        \begin{equation}
+        \begin{split}
+            E[(X - \mu)^3/ \sigma^3] &= \sum_{c=0}^2 ((c-0.6)^3 / 0.66^3) \cdot P(B=c) \\
+            &= (0-0.6)^3 / 0.66^3 \cdot 0.5 + (1-0.6)^3 / 0.66^3 \cdot 0.4 + (2-0.6)^3 / 0.66^3 \cdot 0.1 \\
+            &\approx 0.6678
+        \end{split}
+        \end{equation}
+        Therefore the skewness of B is approximately 0.67.
+    \end{solution}
+    
+\section{Problem D}
+    Consider the board game example, with the random variable B being the amount of bonus, 0,1,...,6. Find EB and Var(B), both mathematically and via simulation. Note that in the latter case you need not simulate the entire game, just the generation of the bonus.
+    \begin{solution}
+    For this problem we are asked to calculate E(B) and Var(B) with B as the random variable of the amount of bonus a player rolls. 
+     Using mailing tube to calculate the expected value of a discrete random variable (3.13) we have:
+    \begin{equation*}
+        E(B) &= \sum_{c=1}^6 c \cdot P(B=c)
+    \end{equation*}
+    However now we have to consider the probability of a bonus being rolled and what the possible values are. Bonus generation is only possible if the user first lands on 3.
+    By inserting mailing tube (2.7) to calculate conditional probability with R as our first roll we get:
+    \begin{equation*}
+    \begin{split}
+        E(B) &= \sum_{c=1}^6 c \cdot P(B=c | R=3) \\
+        &= \sum_{c=1}^6 c \cdot \frac{P(B=c \textrm{ and } R=3)}{P(R=3)}
+    \end{split}
+    \end{equation*}
+    But since R and B are independent values, (2.7) can be simplified to (2.6):
+    \begin{equation*}
+    \begin{split}
+                P(B=c | R=3) &= P(B=c \textrm{ and } R=3) \\
+                &= P(B=c) \cdot P(R=3) \\
+                &= P(B=c) \cdot \frac{1}{6}
+    \end{split}
+    \end{equation*}
+    
+    So, the E(B) is:
+    \begin{equation*}
+        \begin{split}
+            E(B) &= \sum_{c=1}^6 c \cdot \frac{1}{6} \cdot \frac{1}{6}
+            \\ &= \frac{1}{12} \cdot \sum_{c=1}^6 c
+            \\ &= \frac{1}{36} \cdot 21
+            \\ &= \frac{7}{12}
+            \\ &= 0.58333
+        \end{split}
+    \end{equation*}
+    
+    Now we've calculated E(B) we need to calculate Var(B) this can be done by using the mailing tube (3.41):
+    \begin{equation*}
+        Var(B) = E(B^2) - (EB)^2
+    \end{equation*}
+     $E(B^2)$ can be calculated in a similar way as E(B) since the variables are independent:
+    \begin{equation*}
+        \begin{split}
+            E(X^2) &= \sum_{i=1}^6 i^2 \cdot P(B=i^2 | R=3)
+            \\&= \sum_{i=1}^6 i^2 \cdot P(B=i^2) \cdot \frac{1}{6}
+            \\&= \sum_{i=1}^6 i^2 \cdot \frac{1}{6} \cdot \frac{1}{6}
+            \\&= \frac{1}{36} \cdot \sum_{i=1}^6 i^2
+            \\&= \frac{1}{36} \cdot 91
+        \end{split}
+    \end{equation*}
+    Since we calculated E(B) above, we can now complete our Var(B) calculations.
+    \begin{equation*}
+        \begin{split}
+            Var(B) &= E(B^2) - (EB)^2
+            \\&= \frac{91}{36} - (\frac{7}{12})^2
+            \\&= 2.1875
+        \end{split}
+    \end{equation*}
+    Therefore our E(B) = 0.58333 and our Var(B) = 2.1875.
+    \end{solution}
+    
+\end{document}

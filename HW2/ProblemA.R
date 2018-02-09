@@ -3,7 +3,7 @@ random_dice <- function() sample(1:6, size = 2, replace = TRUE)
 count_even <- function(dice) sum(dice %% 2 == 0)
 
 dice <- function() {
-  nreps = 1000000
+  nreps = 500000
   s <- 0
   t <- 0
   st <- 0

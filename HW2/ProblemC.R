@@ -1,22 +1,21 @@
-# function to find E[(X - μ)3/ σ3]
-bus_ridership <- function(nreps, nstops) {
-  EB <- 0
-  VarB <- 0
-  for (i in 1:nreps) {
-    passengers <- 0
-    for (j in 1:nstops) {
-      if (passengers > 0) {
-        for (k in 1:passengers) {
-          if (runif(1) < 0.2) {
-            passengers <- passengers - 1
-          }
-        }
-      }
-      newpass <- sample(0:2, 1, prob=c(0.5,0.4,0.1))
-      passengers <- passengers + newpass
-    }
+# function to determine number of passengers boarding the bus at each stop
+new_passengers <- function() sample(0:2, size = 1, prob = c(0.5,0.4,0.1))
+
+busRidership <- function(nreps) {
+  # building vectors for B and Bsq
+  temp <- new_passengers()
+  Bvector <- temp
+  EBsq <- temp^2
+  for (i in 2:nreps) {
+    temp <- new_passengers()
+    Bvector <- c(Bvector,temp)
+    EBsq <- c(EBsq, temp^2)
   }
+  EB <- mean(Bvector) # takes the average of each each of B
+  EBsq <- mean(EBsq) # takes the average of each value of B^2
+  varB <- EBsq - EB^2 
+  stdBcubed <- (varB)^(3/2)
+  paste("E[(X - μ)3/ σ3] =", mean((Bvector - EB)^3 / stdBcubed)) # the skewness of B
 }
 
-
-bus_ridership(500000, 100)
+busRidership(10000)

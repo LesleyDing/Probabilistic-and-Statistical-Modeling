@@ -15,7 +15,11 @@ busRidership <- function(nreps) {
   EBsq <- mean(EBsq) # takes the average of each value of B^2
   varB <- EBsq - EB^2 
   stdBcubed <- (varB)^(3/2)
+<<<<<<< HEAD
   paste("E[(X - μ)3/ σ3] =", mean((Bvector - EB)^3 / stdBcubed)) # the skewness of B
+=======
+  mean((Bvector - EB)^3 / stdBcubed) # the skewness of B
+>>>>>>> 302206cd23f0af4376d3d15b06022341751fc069
 }
 
 busRidership(10000)

@@ -1,6 +1,6 @@
 # Homework II
 
-Due Friday, February 2
+Due Monday, February 5
 
 
 ## Notes on Submission Packages

@@ -3,6 +3,12 @@ Homework III
 
 Due Tuesday, February 20
 
+## Notes on Submission Packages
+Tar all files in workng directory:
+<pre>tar -cvf njahja.kblu.lhding.aaama.tar *</pre>
+Submission command:
+<pre>handin cs132 hw3 njahja.kblu.lhding.aaama.tar</pre>
+
 Recall the rule that in any problem in which you calculate a probability you must solve it both mathematically and by simulation. That holds for expected values as well.
 
 Problem A:

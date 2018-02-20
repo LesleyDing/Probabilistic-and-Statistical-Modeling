@@ -8,9 +8,6 @@ makePmf <- function(supp,probs) {
   probs
 }
 
-# TESTING
-makePmf(1:3,c(0.25,0.25,0.50))
-
 # overload + function for pmf class
 '+.pmf' <- function(x, y) {
   # obtain support from x and y
@@ -42,7 +39,11 @@ makePmf(1:3,c(0.25,0.25,0.50))
   makePmf(newSupport, newProbs)
 }
 
-# TESTING
+# Below code are for TA to modify for testing
+# Testing makepmf function
+makePmf(1:3,c(0.25,0.25,0.50))
+
+# Testing '+.pmf' function
 x <- makePmf(1:3,c(0.25,0.25,0.50))
 y <- makePmf(c(2,4),c(0.6,0.4)) 
 s <- x + y

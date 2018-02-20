@@ -1,5 +1,5 @@
 NegBinomDist <- function(nreps) {
-    p <-0.4 # prob is given
+    p <- 0.4 # prob is given
     r <- 3 # number of successes
     # add r to rnbinom because rnbinom outputs number of failures
     Nvector <- rnbinom(nreps, size = r, prob = p) + r

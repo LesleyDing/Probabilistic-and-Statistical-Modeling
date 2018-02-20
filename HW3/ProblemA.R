@@ -13,10 +13,6 @@ makePmf(1:3,c(0.25,0.25,0.50))
 
 # overload + function for pmf class
 '+.pmf' <- function(x, y) {
-  # obtain names from x and y
-  xSupp <- as.numeric(names(x))
-  ySupp <- as.numeric(names(y))
-
   # obtain support from x and y
   xSupport <- as.numeric(names(x))
   ySupport <- as.numeric(names(y))

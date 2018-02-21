@@ -11,4 +11,4 @@ NegBinomDist <- function(nreps) {
     skewN
 }
 
-NegBinomDist(10000)
+paste("The skewness is:", NegBinomDist(1000000))

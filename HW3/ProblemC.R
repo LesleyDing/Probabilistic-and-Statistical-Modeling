@@ -16,7 +16,7 @@ boardsim <- function (nrolls) {
     if (position > 7) {
       nwins <- nwins + 1
       position <- position - 8
-      vwins <- vwins + position
+      vwins <- vwins + position + 1
       # add the rolls counted from all previous positions
       for (j in 1:length(prevpositions)) {
         TotalRollsNeeded[j] <- TotalRollsNeeded[j] + prevpositions[j]

@@ -7,7 +7,7 @@ simProbB <- function(nreps,lambda,alpha,beta) {
     d <- boxes * p
     # the mean of d
     ed <- mean(d)
-    # the variance of d, using mailing tube (3,41)
+    # the variance of d, using mailing tube (3.41)
     vard <- mean(d^2) - ed^2
     # a partial check that ED = λ α / (α + β)
     edcheck <- lambda * alpha / (alpha + beta)

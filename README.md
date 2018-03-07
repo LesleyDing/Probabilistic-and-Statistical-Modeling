@@ -1,6 +1,23 @@
 # ECS-132
 
-## Here is the HW repository
+## HW Highlights:
+#### [HW1](https://github.com/KangboLu/ECS-132/tree/master/HW1):
+* ProblemA: Conditional Multibridge Traveling
+* ProblemB: Simple ALOHA Network Model
+* ProblemC: Preferential Attachment Model Simulation
+#### [HW2](https://github.com/KangboLu/ECS-132/tree/master/HW2):
+* ProblemA: Expected Value of Dependent Variables
+* ProblemB: Mean, Variance, and Covariance of the Preferential Attachment Model
+* ProblemC: Skewness of Bus Ridership Model
+* ProblemD: Mean and Variance of Bonus in Board Game Model
+#### [HW3](https://github.com/KangboLu/ECS-132/tree/master/HW3):
+* ProblemA: OOP with Probability Mass Functon
+* ProblemB: Negative Binomial Distribution SKewness
+* ProblemC: Various Expected Values of Simple Board Game Model
+* ProblemD: Mean of Geometric Distribution
+#### [HW4](https://github.com/KangboLu/ECS-132/tree/master/HW4):
+* ProblemA: d, p, q, r Function for ucd Family of Distribution
+* ProblemB and Extra Credit: Poisson and Beta Distributions
 
 ## Notes on Submission Packages
 

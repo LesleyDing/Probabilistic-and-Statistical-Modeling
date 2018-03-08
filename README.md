@@ -1,13 +1,13 @@
 # ECS-132: 
 Probabilistic and Statistical Modeling in Computer Science
 
-## Contributors:
+## Contributors: :+1:
 * Alice MA: [@maalice](https://github.com/maalice)
 * Hanzhi Ding: [@LesleyDing](https://github.com/LesleyDing)
 * Kangbo Lu: [@KangboLu](https://github.com/KangboLu)
 * Nicholas Jahja: [@njahja](https://github.com/njahja)
 
-## HW Highlights:
+## HW Highlights: :star2:
 #### [HW1](https://github.com/KangboLu/ECS-132/tree/master/HW1):
 * ProblemA: Conditional Multibridge Traveling
 * ProblemB: Simple ALOHA Network Model
@@ -26,7 +26,7 @@ Probabilistic and Statistical Modeling in Computer Science
 * ProblemA: d, p, q, r Function for ucd Family of Distribution
 * ProblemB and Extra Credit: Poisson and Beta Distributions
 
-## Notes on Submission Packages
+## Notes on Submission Packages :notebook:
 
 *   In any Homework assignment, include all the files for problems due on the same date in the same **.tar** file, NO SUBDIRECTORIES. When the TA's grading script unpacks the file, all the files should be in the directory from which she issued the unpack command. The name of the **.tar** file must be as specified in the course Syllabus.
 

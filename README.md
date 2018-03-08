@@ -1,4 +1,5 @@
-# ECS-132
+# ECS-132: 
+Probabilistic and Statistical Modeling in Computer Science
 
 ## Contributors:
 * Alice MA: [@maalice](https://github.com/maalice)

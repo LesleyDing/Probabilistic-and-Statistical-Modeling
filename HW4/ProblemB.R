@@ -13,5 +13,5 @@ simProbB <- function(nreps,lambda,alpha,beta) {
     edcheck <- lambda * alpha / (alpha + beta)
     cat("The mean of D: ", ed, "\n")
     cat("The variance of D: ", vard, "\n")
-    cat("Check that ED = λ α / (α + β): ", edcheck)
+    cat("Check that ED = λ α / (α + β): ", edcheck, "\n")
 }

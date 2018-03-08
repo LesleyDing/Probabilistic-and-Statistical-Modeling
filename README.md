@@ -1,5 +1,11 @@
 # ECS-132
 
+## Contributors:
+* Alice MA: [@maalice](https://github.com/maalice)
+* Hanzhi Ding: [@LesleyDing](https://github.com/LesleyDing)
+* Kangbo Lu: [@KangboLu](https://github.com/KangboLu)
+* Nicholas Jahja: [@njahja](https://github.com/njahja)
+
 ## HW Highlights:
 #### [HW1](https://github.com/KangboLu/ECS-132/tree/master/HW1):
 * ProblemA: Conditional Multibridge Traveling
